@@ -1,32 +1,28 @@
-import uuid
-from datetime import datetime
+
 from typing import Annotated
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, Body, Request
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, Field
-from pydantic.json_schema import SkipJsonSchema
+
 
 from src.llm_agent.config.logger import logger
+from src.llm_agent.server.models import Prompt, Output
 
 
-class Input(BaseModel):
-    id: SkipJsonSchema[str] | None = Field(default=str(uuid.uuid1()))
-    created_at: SkipJsonSchema[str] | None = Field(default=str(datetime.now()))
-    prompt: str
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    yield
+    logger.info("Shutting down API Server")
 
-
-class Output(BaseModel):
-    id: str | None = Field(default=str(uuid.uuid1()))
-    created_at: str | None = Field(default=str(datetime.now()))
-    response: str
 
 app = FastAPI()
 
+
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
-    logger.warning(exc.errors())
+    logger.info(f"'exception_handler': {exc.errors()}")
     return JSONResponse(
         status_code=422,
         content=jsonable_encoder({"detail": exc.errors()}),
@@ -34,7 +30,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
 
 @app.post("/prompt/", response_model=Output)
-async def receive_prompt(prompt: Annotated[Input, Body(examples=[{"prompt": "Hello World"}])]):
+async def receive_prompt(prompt: Annotated[Prompt, Body(examples=[{"prompt": "Hello World"}])]):
     logger.info(f"'prompt': {prompt.model_dump()}")
     output = Output(
         response='Hello World'
