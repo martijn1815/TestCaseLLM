@@ -33,9 +33,9 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     )
 
 
-@app.post("/responses/", response_model=Output)
-async def receive_prompt(input: Annotated[Input, Body(examples=[{"prompt": "Hello World"}])]):
-    logger.info(f"'input': {input.model_dump()}")
+@app.post("/prompt/", response_model=Output)
+async def receive_prompt(prompt: Annotated[Input, Body(examples=[{"prompt": "Hello World"}])]):
+    logger.info(f"'prompt': {prompt.model_dump()}")
     output = Output(
         response='Hello World'
     )
