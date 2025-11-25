@@ -1,5 +1,0 @@
-2025-11-26 00:48:30,824 - INFO - root - Starting API Server
-2025-11-26 00:49:00,050 - INFO - root - Starting API Server
-2025-11-26 00:49:06,591 - INFO - root - 'prompt': {'id': '50f2034e-ca59-11f0-a167-8f8a2d286652', 'created_at': '2025-11-26 00:49:00.742560', 'prompt': 'Hello World'}
-2025-11-26 00:49:06,592 - INFO - root - 'output': {'id': '50f2034f-ca59-11f0-a167-8f8a2d286652', 'created_at': '2025-11-26 00:49:00.743351', 'response': 'Hello World'}
-2025-11-26 00:49:19,114 - INFO - root - Shutting down API Server
