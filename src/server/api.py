@@ -13,6 +13,7 @@ from src.server.models import Prompt, Output
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    logger.info("Starting API Server")
     yield
     logger.info("Shutting down API Server")
 
