@@ -7,8 +7,8 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 
-from src.policy_agent.config.logger import logger
-from src.policy_agent.server.models import Prompt, Output
+from src.config.logger import logger
+from src.server.models import Prompt, Output
 
 
 @asynccontextmanager

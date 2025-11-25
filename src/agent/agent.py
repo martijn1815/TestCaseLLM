@@ -2,9 +2,9 @@ from langchain_ollama import ChatOllama
 from langgraph.checkpoint.memory import InMemorySaver
 from langchain.agents import create_agent
 
-from src.policy_agent.config.settings import settings
-from src.policy_agent.agent.models import ResponseFormat
-from src.policy_agent.agent.prompts import SYSTEM_PROMPT
+from src.config.settings import settings
+from src.agent.models import ResponseFormat
+from src.agent.prompts import SYSTEM_PROMPT
 
 
 model = ChatOllama(
