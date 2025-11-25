@@ -17,7 +17,7 @@ async def lifespan(app: FastAPI):
     logger.info("Shutting down API Server")
 
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
 
 @app.exception_handler(RequestValidationError)
