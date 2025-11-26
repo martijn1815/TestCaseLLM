@@ -6,10 +6,17 @@ load_dotenv(find_dotenv(".env"))
 
 
 class Settings(BaseSettings):
-    port: int
-    host_url: str
-    api_key: str
+    # API
+    api_port: int
+    log_file: str | None = "../logfiles/policy_agent.log"
+    # LLM Model
+    host_url: str | None = None
     model: str
+    host_url: str
+    # Embedding Model
+    embedding_model: str
+    embedding_host_url: str | None = None
+    file_dir: str  | None = "../../test_data/synthetic_policy_documents/"
 
     class Config:
         env_file = ".env"

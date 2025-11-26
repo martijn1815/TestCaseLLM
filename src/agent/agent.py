@@ -5,6 +5,7 @@ from langchain.agents import create_agent
 from src.config.settings import settings
 from src.agent.models import ResponseFormat
 from src.agent.prompts import SYSTEM_PROMPT
+from src.agent.middleware.rag import RAG
 
 
 model = ChatOllama(
@@ -20,18 +21,20 @@ agent = create_agent(
     model=model,
     system_prompt=SYSTEM_PROMPT,
     response_format=ResponseFormat,
-    checkpointer=checkpointer
+    checkpointer=checkpointer,
+    middleware=[RAG]
 )
+
 
 def get_response(thread_id: str, prompt: str) -> ResponseFormat:
     """
     Receive thread id (unique identifier for a given conversation) and prompt message,
     then invoke a response from the agent. Returns the structured response.
-    :param thread_id:
+    :param thread_id: unique identifier for a given conversation
     :param prompt:
     :return ResponseFormat:
     """
-    # `thread_id` is a unique identifier for a given conversation.
+
     config = {"configurable": {"thread_id": thread_id}}
 
     response = agent.invoke(
@@ -43,4 +46,6 @@ def get_response(thread_id: str, prompt: str) -> ResponseFormat:
 
 
 if __name__ == '__main__':
-    print(get_response(thread_id="1", prompt="Can you tell me a joke?").response)
+    from src.database.vectorstore import ingest_md_files
+    ingest_md_files()
+    print(get_response(thread_id="1", prompt="Can I use my own equipment?").response)

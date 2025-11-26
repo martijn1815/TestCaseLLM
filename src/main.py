@@ -8,7 +8,7 @@ def start_api_server():
     Start API Server
     :return:
     """
-    uvicorn.run("src.server.api:app", port=settings.port, reload=True)  # Set reload to False in prod
+    uvicorn.run("src.server.api:app", port=settings.api_port, reload=True)  # Set reload to False in prod
 
 
 if __name__ == '__main__':
