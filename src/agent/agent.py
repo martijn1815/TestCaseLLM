@@ -46,6 +46,7 @@ def get_response(thread_id: str, prompt: str) -> ResponseFormat:
 
 
 if __name__ == '__main__':
-    from src.database.vectorstore import ingest_md_files
+    from src.database.vectorstore import ingest_md_files, vector_store
     ingest_md_files()
+    print(vector_store.similarity_search("Can I use my own equipment?"))
     print(get_response(thread_id="1", prompt="Can I use my own equipment?").response)
