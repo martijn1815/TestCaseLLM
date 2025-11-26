@@ -9,6 +9,7 @@ from fastapi.responses import JSONResponse
 
 from src.config.logger import logger
 from src.server.models import Prompt, Output
+from src.agent.agent import get_response
 
 
 @asynccontextmanager
@@ -31,10 +32,19 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
 
 @app.post("/prompt/", response_model=Output)
-async def receive_prompt(prompt: Annotated[Prompt, Body(examples=[{"prompt": "Hello World"}])]):
-    logger.info(f"'prompt': {prompt.model_dump()}")
+async def receive_prompt(
+        prompt: Annotated[
+            Prompt,
+            Body(examples=[{
+                "prompt": "Hello World",
+                "conversation_id": "Optional conversation id"
+            }])
+        ]
+    ):
+    logger.info(f"{{'prompt': {prompt.model_dump()}}}")
     output = Output(
-        response='Hello World'
+        conversation_id=prompt.conversation_id,
+        response=get_response(thread_id=prompt.conversation_id, prompt=prompt.prompt).response
     )
-    logger.info(f"'output': {output.model_dump()}")
+    logger.info(f"{{'output': {output.model_dump()}}}")
     return output
