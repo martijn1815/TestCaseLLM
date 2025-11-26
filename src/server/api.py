@@ -8,12 +8,16 @@ from fastapi.responses import JSONResponse
 
 
 from src.config.logger import logger
+from src.database.vectorstore import ingest_md_files
 from src.server.models import Prompt, Output
 from src.agent.agent import get_response
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    logger.info("Start ingesting files into vectorstore")
+    ingest_md_files()
+    logger.info("Finished ingesting files into vectorstore")
     logger.info("Starting API Server")
     yield
     logger.info("Shutting down API Server")
