@@ -24,7 +24,10 @@ class RetrieveDocumentsMiddleware(AgentMiddleware[State]):
         last_message = state["messages"][-1]
         retrieved_docs = vector_store.similarity_search(last_message.text)
 
-        docs_content = "\n\n".join(doc.page_content for doc in retrieved_docs)
+        docs_content = "\n\n".join(
+            f"'''\nDocument Name:\n{doc.metadata.file_name}\n\nDocument Content:\n{doc.page_content}'''"
+            for doc in retrieved_docs
+        )
 
         augmented_message_content = (
             f"{last_message.text}\n\n"
