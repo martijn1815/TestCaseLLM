@@ -44,6 +44,8 @@ def ingest_md_files():
     vector_store.add_documents(
         documents=docs
     )
+    print(os.path.dirname(os.path.abspath(__file__)))
+    print(vector_store.store.values())
 
 
 if __name__ == '__main__':

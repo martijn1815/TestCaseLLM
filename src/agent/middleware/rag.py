@@ -22,10 +22,10 @@ class RetrieveDocumentsMiddleware(AgentMiddleware[State]):
         :return:
         """
         last_message = state["messages"][-1]
-        retrieved_docs = vector_store.similarity_search(last_message.text)
+        retrieved_docs = vector_store.similarity_search(last_message.text, 3)
 
         docs_content = "\n\n".join(
-            f"'''\nDocument Name:\n{doc.metadata.file_name}\n\nDocument Content:\n{doc.page_content}'''"
+            f"'''\nDocument Name:\n{doc.metadata['file_name']}\n\nDocument Content:\n{doc.page_content}'''"
             for doc in retrieved_docs
         )
 

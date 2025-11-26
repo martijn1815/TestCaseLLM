@@ -18,3 +18,4 @@ class Output(BaseModel):
     conversation_id: str | None = Field(default=str(uuid.uuid1()))
     created_at: str | None = Field(default=str(datetime.now()))
     response: str
+    documents: list[str] | None = []

@@ -46,9 +46,11 @@ async def receive_prompt(
         ]
     ):
     logger.info(f"{{'prompt': {prompt.model_dump()}}}")
+    agent_response = get_response(thread_id=prompt.conversation_id, prompt=prompt.prompt)
     output = Output(
         conversation_id=prompt.conversation_id,
-        response=get_response(thread_id=prompt.conversation_id, prompt=prompt.prompt).response
+        response=agent_response.response,
+        documents=agent_response.documents
     )
     logger.info(f"{{'output': {output.model_dump()}}}")
     return output
