@@ -24,6 +24,13 @@ agent = create_agent(
 )
 
 def get_response(thread_id: str, prompt: str) -> ResponseFormat:
+    """
+    Receive thread id (unique identifier for a given conversation) and prompt message,
+    then invoke a response from the agent. Returns the structured response.
+    :param thread_id:
+    :param prompt:
+    :return ResponseFormat:
+    """
     # `thread_id` is a unique identifier for a given conversation.
     config = {"configurable": {"thread_id": thread_id}}
 
