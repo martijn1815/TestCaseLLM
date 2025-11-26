@@ -5,7 +5,7 @@ from langchain.agents import create_agent
 from src.config.settings import settings
 from src.agent.models import ResponseFormat
 from src.agent.prompts import SYSTEM_PROMPT
-from src.agent.middleware.rag import RAG
+from src.agent.middleware.rag import rag
 
 
 model = ChatOllama(
@@ -22,7 +22,7 @@ agent = create_agent(
     system_prompt=SYSTEM_PROMPT,
     response_format=ResponseFormat,
     checkpointer=checkpointer,
-    middleware=[RAG]
+    middleware=[rag]
 )
 
 
