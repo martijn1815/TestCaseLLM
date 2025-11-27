@@ -1,0 +1,38 @@
+[
+  {
+    "question": "What should IT prepare before the first day of a new employee?",
+    "answer": "Before Day 1, IT prepares the laptop, user accounts, software licenses, and required access permissions.",
+    "keywords": ["laptop", "user accounts", "software licenses", "access permissions"],
+    "source": "Onboarding Steps for New Employees.md"
+  },
+  {
+    "question": "While working remote, can the company network be accessed without a VPN",
+    "answer": "No, access to the company network must be secured using VPN.",
+    "keywords": ["VPN"],
+    "source": "Remote Work Policy.md"
+  },
+  {
+    "question": "Within what timeframe must employees submit their travel expense report?",
+    "answer": "Employees must submit their travel expense report within 30 days after completing travel.",
+    "keywords": ["30 days"],
+    "source": "Travel Expenses and Reimbursement Policy.md"
+  },
+  {
+    "question": "Is it okay if I turn my camera off during a meeting?",
+    "answer": "No, virtual meetings require cameras on unless otherwise agreed",
+    "keywords": ["camera", "on"],
+    "source": "Communication & Meeting Policy"
+  },
+  {
+    "question": "If I my company laptop gets stolen, how fast should I notify the company?",
+    "answer": "Any loss or theft must be reported within 24 hours",
+    "keywords": ["within", "24", "hours"],
+    "source": "Laptop Usage and Security Policy"
+  },
+  {
+    "question": "To whom does the security policy apply?",
+    "answer": "The policy applies to all employees, contractors, interns, and third-party users who have access to company laptops, regardless of location.",
+    "keywords": ["employees", "contractors", "interns", "third-party users"],
+    "source": "Laptop Usage and Security Policy"
+  }
+]
