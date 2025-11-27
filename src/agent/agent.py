@@ -6,6 +6,7 @@ from src.config.settings import settings
 from src.agent.models import ResponseFormat
 from src.agent.prompts import SYSTEM_PROMPT
 from src.agent.middleware.rag import rag
+from src.agent.middleware.validate_docs import validate_docs
 
 
 model = ChatOllama(
@@ -22,7 +23,7 @@ agent = create_agent(
     system_prompt=SYSTEM_PROMPT,
     response_format=ResponseFormat,
     checkpointer=checkpointer,
-    middleware=[rag]
+    middleware=[rag, validate_docs]
 )
 
 
