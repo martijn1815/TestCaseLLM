@@ -1,0 +1,16 @@
+version: "3.9"
+name: policy-qa-service
+services:
+  llm_agent:
+    build: .
+    container_name: policy-qa-agent
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./logfiles:/app/logfiles
+      - ./test_data/synthetic_policy_documents:/app/synthetic_policy_documents
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: always
