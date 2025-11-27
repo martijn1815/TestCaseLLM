@@ -59,5 +59,5 @@ with open("test_data/evaluation/hallucination_check.json", "r") as f:
 
 @pytest.mark.parametrize("hallucination_check", hallucination_checks)
 def test_hallucinations(hallucination_check):
-    response = call_agent(hallucination_check["question"])
+    response = call_agent(hallucination_check["question"])["response"]
     assert response == "I am sorry I could not find any information related to your question."
