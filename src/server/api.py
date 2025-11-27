@@ -9,7 +9,7 @@ from fastapi.responses import JSONResponse
 
 from src.config.logger import logger
 from src.database.vectorstore import ingest_md_files
-from src.server.models import Prompt, Output
+from src.server.models import Prompt, Output, Feedback
 from src.agent.agent import get_response
 
 
@@ -54,3 +54,8 @@ async def receive_prompt(
     )
     logger.info(f"{{'output': {output.model_dump()}}}")
     return output
+
+
+@app.post("/feedback/")
+async def receive_prompt(feedback: Feedback):
+    logger.info(f"{{'feedback': {feedback.model_dump()}}}")
