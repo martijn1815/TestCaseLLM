@@ -3,7 +3,6 @@ import time
 import pytest
 import requests
 import json
-import re
 
 
 def call_agent(prompt: str):
